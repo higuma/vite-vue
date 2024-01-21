@@ -1,8 +1,8 @@
-# アイコンの作成
+# アイコンの設定
 
 ## 目的
 
-Webサイトに用いるアイコン画像セット一式を作成する。
+Webサイトに用いるアイコン画像セット一式を作成し、それらをHTMLに設定する。
 
 ## リファレンス
 
@@ -16,11 +16,11 @@ https://evilmartians.com/chronicles/how-to-favicon-in-2021-six-files-that-fit-mo
 
 ## SVGの作成
 
-まず元となるSVG画像を作成する。今回は[Inkscape](https://inkscape.org/)を用い、320ｘ320(px)のSVG画像を作成した。元画像は次の通り。
+元となるSVG画像を作成する。今回は[Inkscape](https://inkscape.org/)を用い、320ｘ320(px)のSVG画像を作成した。元画像は次の通り。
 
 [![bear.svg](bear.svg)](bear.svg)
 
-> 下手くそです(ごめん)。お絵描きが目的ではなく、それをどのようにWeb用アイコンとして設定するかという練習用なのでどうか許して。
+> 下手くそ(ごめん)。お絵描きが目的ではなく、それをどのようにWeb用アイコンとして設定するかという練習用なのでどうか許して。
 
 ## 各種環境への対応
 
@@ -54,7 +54,7 @@ HTMLには次のように設定する。
 
 ### レガシーブラウザ
 
-まず元画像をGIMPで取り込み、32x32に縮小して`favicon.ico`としてexportする。
+元画像をGIMPで取り込み、32x32に縮小して`favicon.ico`としてexportする。
 
 [![favicon.ico](favicon.ico)](favicon.ico)
 
@@ -66,21 +66,23 @@ HTMLには次のように設定する。
 
 ### Android
 
+Androidデバイスでは[プログレッシブWebアプリ](https://developer.mozilla.org/ja/docs/Glossary/Progressive_web_apps)の仕様を適用し、[Webアプリマニフェスト](https://developer.mozilla.org/ja/docs/Web/Manifest)(具体的には`manifest.json`)に設定する。
+
 まずSVGをビットマップツールに取り込み、スケールして512x512と192x192のPNG画像ファイルを生成する。
 
 [![icon-512.png](icon-512.png)](icon-512.png)
 
 [![icon-192.png](icon-192.png)](icon-192.png)
 
-Manifestを設定する。HTML側は次の通り。
+次にマニフェストを設定する。まずHTML側に参照するマニフェストファイル(`manifest.json`)を指定する。
 
 ```html
 link rel="manifest" href="/manifest.json">
 ```
 
-Manifest側は次のように記述する。
+`manifest.json`には次のように記述する(アイコン設定部のみ)。
 
-```
+```json
 {
   ...(略)...
   "icons": [
@@ -92,7 +94,7 @@ Manifest側は次のように記述する。
 
 ### apple-touch-icon
 
-Apple製の機器で用いられる。詳しい解説は次を参考にすること。必須ではないが、iOS環境からアクセスした場合は必ずこれを参照するため、設定しないと内部で大量の404エラーが発生する(表には出ないがアクセス遅延の要因になる)。
+Appleのデバイスで用いられる。詳しい解説は次を参考にすること。必須ではないが、iOS環境からアクセスした場合は必ずこれを参照するため、設定しないと内部で大量の404エラーが発生する(表には出ないがアクセス遅延の要因になる)。
 
 https://www.homepage-tukurikata.com/hp/apple-touch-icon.html
 
@@ -109,7 +111,7 @@ https://www.homepage-tukurikata.com/hp/apple-touch-icon.html
 
 これをHTMLに次のように設定する。
 
-```
+```html
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 ```
 

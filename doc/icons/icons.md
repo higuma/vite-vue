@@ -84,7 +84,7 @@ link rel="manifest" href="/manifest.json">
 
 ```json
 {
-  ...(略)...
+  // ...(略)...
   "icons": [
     { "src": "/icon-192.png", "type": "image/png", "sizes": "192x192" },
     { "src": "/icon-512.png", "type": "image/png", "sizes": "512x512" }

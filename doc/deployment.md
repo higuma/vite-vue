@@ -17,7 +17,7 @@ export default defineConfig({
 })
 ```
 
-次にrepoの Settings - Pages ページを表示。
+次にrepoの Settings - Pages ページを表示し、Web上で作業する。
 
 - GitHub Pages
   - Build and deployment
@@ -26,12 +26,10 @@ export default defineConfig({
     - Static HTMLのConfigureボタンを押してテンプレートを表示
       - 後ろから4行目の`path: '.'`を`path: `./dist'`に変更
       - オンライン編集でcommitした方が確実(.github/workflows.static.yml)
-- 終わったらgit pull
-  - .gitignoreを調べてdistがあった場合は削除(これを忘れると反映されない)
+- 終わったらローカル環境へgit pull
+- `.gitignore`をチェックし、`dist`が登録されていたら削除(これを忘れると反映されない)
 
-これで準備完了(たぶん)。後は動かし方(どこに書いてあるのかな)。
-
-> (参考 - 作業記録): `.github/workflows.static.yml`をローカル側に作成し、編集してからpushしたら何かうまくいかなかった。上記のようにオンラインで編集＋コミットし、それをpullしたらすんなりできた。
+> (参考 - 作業記録): `.github/workflows.static.yml`をローカル側に作成し、編集してからpushする方法も試みたがうまくいかなかった。上記のようにオンラインで編集＋コミットし、そこからpullしたらすんなりできた。
 
 ## 操作法
 
